@@ -8,9 +8,8 @@ module.exports = {
     connection.connect(function (err) {
       if (err) {
         throw err
-      }else {
+      } else {
         console.log('数据库连接成功...')
-        
       }
       //开始数据操作
       connection.query(sql, params, function (err, results, fields) {
@@ -21,7 +20,7 @@ module.exports = {
         callback &&
           callback(
             JSON.parse(JSON.stringify(results)),
-            JSON.parse(JSON.stringify(fields))
+            JSON.parse(JSON.stringify(fields)),
           )
         //停止链接数据库，必须在查询语句后，要不然一调用这个方法，就直接停止链接，数据操作就会失败
         connection.end(function (err) {

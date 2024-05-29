@@ -43,7 +43,7 @@
 //   };
 
 //   const insertSQL = 'INSERT INTO ev_users SET ?';
-  
+
 //   db.query(insertSQL, insertData, (err, result) => {
 //     if (err) {
 //       throw err;
