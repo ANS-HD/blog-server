@@ -10,7 +10,7 @@ async function register(req, res) {
     const existingUser = await User.findOne({ where: { username } })
     if (existingUser) {
       return res.status(400).json({
-        data:{
+        data: {
           message: '用户已经存在！',
           status: 400,
         }
@@ -25,15 +25,19 @@ async function register(req, res) {
     const token = jwt.sign({ userId: user.id }, 'ans-hd-blog', {
       expiresIn: '24h',
     })
-    res.status(201).json({data:{
-      token,
-      status: 201,
-    }})
+    res.status(201).json({
+      data: {
+        token,
+        status: 201,
+      }
+    })
   } catch (error) {
-    res.status(500).json({data:{
-      message: 'failed to register',
-      status: 500
-    }})
+    res.status(500).json({
+      data: {
+        message: 'failed to register',
+        status: 500
+      }
+    })
   }
 }
 
@@ -48,7 +52,7 @@ async function login(req, res) {
         message: '账号或密码错误！！！',
         status: 401,
       }
-      return res.status(401).json({data})
+      return res.status(401).json({ data })
     }
 
     // 检查密码是否匹配
@@ -58,7 +62,7 @@ async function login(req, res) {
         message: '账号或密码错误！！！',
         status: 401,
       }
-      return res.status(401).json({data})
+      return res.status(401).json({ ...data })
     }
 
     // 更新用户的最后在线时间
@@ -79,9 +83,9 @@ async function login(req, res) {
     }
 
     // 返回包含令牌、账号名和用户名的响应
-    res.json({data})
+    res.json({ data })
   } catch (error) {
-    res.status(500).json({data:{ msg: 'Failed to log in' }})
+    res.status(500).json({ data: { msg: 'Failed to log in' } })
   }
 }
 
