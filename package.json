@@ -23,5 +23,8 @@
   },
   "devDependencies": {
     "mysql": "^2.18.1"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
