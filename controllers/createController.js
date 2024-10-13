@@ -3,8 +3,11 @@ const Create = require('../models/create')
 async function createBlog(req, res) {
     try {
         const { title, content } = req.body
-        console.log(req);
+        console.log(req.headers);
 
+        if (!title || !content) {
+            return res.status(400).json({ error: 'Title and content are required' })
+        }
         const newBlog = await Create.create({
             title,
             content,

@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
+const { v4: uuidv4 } = require('uuid');
 const jwt = require('jsonwebtoken')
 
 async function register(req, res) {
@@ -17,6 +18,8 @@ async function register(req, res) {
       })
     }
 
+    const userId = uuidv4();
+
     // 对密码进行加密处理
     const hashedPassword = await bcrypt.hash(password, 10)
 
@@ -28,6 +31,7 @@ async function register(req, res) {
     res.status(201).json({
       data: {
         token,
+        userId,
         status: 201,
       }
     })
